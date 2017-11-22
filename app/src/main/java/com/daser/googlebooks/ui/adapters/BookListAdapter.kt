@@ -23,33 +23,30 @@ class BookListAdapter : PagedListAdapter<Book, BookListAdapter.BookItemViewHolde
     }
 
     override fun onBindViewHolder(holder: BookItemViewHolder, position: Int) {
-        val book = getItem(position)
-        if (book != null) {
-            holder.bindTo(book)
-        }
+        getItem(position)?.let { holder.bindTo(it) }
     }
 
     class BookItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var bookNameView: TextView = itemView.findViewById(R.id.book_name)
         private var bookAuthorsView: TextView = itemView.findViewById(R.id.book_authors)
 
-        fun bindTo(book: Book?) {
-            var bookName = ""
-            var bookAuthors = ""
-
-            if (book?.volumeInfo != null) {
-                if (book.volumeInfo!!.title != null) {
-                    bookName = book.volumeInfo!!.title.toString()
+        init {
+            itemView.setOnClickListener({
+                if (itemView.tag != null) {
+                    // TODO
+                    // Log.d("Books", "item clicked " + itemView.tag)
+                    // open detail view activity
+                    //val intent = Intent(this, BookDetail::class.java)
+                    //intent.putExtra("key", value)
+                    //startActivity(intent)
                 }
+            })
+        }
 
-                if (book.volumeInfo!!.authors != null) {
-                    bookAuthors = book.volumeInfo!!.authors!!.toString()
-                }
-
-            }
-
-            bookNameView.text = bookName
-            bookAuthorsView.text = bookAuthors
+        fun bindTo(book: Book) {
+            itemView.tag = book.id
+            bookNameView.text = book.volumeInfo.title
+            bookAuthorsView.text = book.volumeInfo.authors.toString()
         }
     }
 }

@@ -31,10 +31,7 @@ class TDataSource : TiledDataSource<Book>() {
         try {
             val response = bookService.getVolumes(searchText, startPosition, count, SUMMARY_FIELDS).execute()
             if (response.isSuccessful && response.code() == 200) {
-                if (response.body() != null && response.body()!!.items != null)
-                {
-                    books.addAll(response.body()!!.items!!)
-                }
+                response.body()?.items?.let(books::addAll)
             } else {
                 Log.e("API CALL ERROR", response.message())
             }

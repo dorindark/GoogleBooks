@@ -9,26 +9,14 @@ import com.google.gson.annotations.SerializedName
  * Created by Dorin on 11/20/2017.
  */
 
-class Book {
+data class Book(
+        @SerializedName("id")
+        @Expose
+        var id: String = "",
 
-    @SerializedName("id")
-    @Expose
-    var id: String? = null
-
-    @SerializedName("volumeInfo")
-    @Expose
-    var volumeInfo: VolumeInfo? = null
-
-//    override fun equals(obj: Any?): Boolean {
-//        if (obj == this) {
-//            return true
-//        }
-//
-//        val book = obj as Book?
-//
-//        return (book!!.id == this.id && book.volumeInfo!!.title == this.volumeInfo!!.title
-//                && book.volumeInfo!!.authors == this.volumeInfo!!.authors)
-//    }
+        @SerializedName("volumeInfo")
+        @Expose
+        var volumeInfo: VolumeInfo = VolumeInfo()) {
 
     companion object {
 

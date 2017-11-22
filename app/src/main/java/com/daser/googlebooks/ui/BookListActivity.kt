@@ -15,8 +15,6 @@ import android.text.TextWatcher
 
 
 class BookListActivity : AppCompatActivity() {
-
-    private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: BookListViewModel
     private lateinit var bookListAdapter: BookListAdapter
 
@@ -24,7 +22,7 @@ class BookListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_list)
 
-        recyclerView = findViewById<RecyclerView>(R.id.book_list)
+        val recyclerView = findViewById<RecyclerView>(R.id.book_list)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProviders.of(this).get(BookListViewModel::class.java)

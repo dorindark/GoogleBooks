@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/book_detail_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/book_title_text_size"
+        android:textStyle="bold"
+        android:padding="@dimen/book_detail_generic_padding"/>
+
+    <TextView
+        android:id="@+id/book_detail_authors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/book_authors_text_size"
+        android:padding="@dimen/book_detail_generic_padding"
+        />
+
+    <ImageView
+        android:id="@+id/book_detail_image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/book_detail_image_height"
+        android:padding="@dimen/book_detail_generic_padding"/>
+
+    <TextView
+        android:id="@+id/book_detail_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/book_description_text_size"
+        android:padding="@dimen/book_detail_generic_padding"/>
+
+
+</LinearLayout>

@@ -33,14 +33,27 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:26.1.0'
 
     // kotlin
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     // paging
     implementation 'android.arch.paging:runtime:1.0.0-alpha3'
 
     // retrofit
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:design:26.1.0'
     compile "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    compile "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
     compile "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    // for rxjava 2
+    compile "io.reactivex.rxjava2:rxandroid:2.0.1"
+
+    // picasso
+    compile 'com.squareup.picasso:picasso:2.5.2'
+
+    // dagger 2 for dependency injection
+    compile 'com.google.dagger:dagger-android:2.13'
+    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
 
     // tests
     testImplementation 'junit:junit:4.12'

@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 import com.daser.googlebooks.R
+import com.daser.googlebooks.config.Constants
 import com.daser.googlebooks.data.Book
+import com.daser.googlebooks.ui.BookDetailActivity
+import android.content.Intent
+
+
 
 /**
  * Created by Dorin on 11/20/2017.
@@ -33,12 +38,11 @@ class BookListAdapter : PagedListAdapter<Book, BookListAdapter.BookItemViewHolde
         init {
             itemView.setOnClickListener({
                 if (itemView.tag != null) {
-                    // TODO
-                    // Log.d("Books", "item clicked " + itemView.tag)
+
                     // open detail view activity
-                    //val intent = Intent(this, BookDetail::class.java)
-                    //intent.putExtra("key", value)
-                    //startActivity(intent)
+                    val intent = Intent(itemView.context, BookDetailActivity::class.java)
+                    intent.putExtra(Constants.BOOK_DETAIL_KEY, itemView.tag as String)
+                    itemView.context.startActivity(intent)
                 }
             })
         }

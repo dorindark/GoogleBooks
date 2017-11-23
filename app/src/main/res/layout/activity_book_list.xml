@@ -5,11 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/search_book_label"
+            android:gravity="center"
+            android:textSize="@dimen/search_label_text_size"
+            android:padding="@dimen/search_label_padding"/>
     <EditText
         android:id="@+id/search_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/search_view_padding"/>
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/book_list"

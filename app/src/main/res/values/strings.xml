@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GoogleBooks</string>
+    <string name="title_activity_book_detail">BookDetailActivity</string>
+    <string name="search_book_label">Search book</string>
 </resources>

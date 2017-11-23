@@ -9,21 +9,9 @@ data class VolumeInfo(
         @Expose
         var title: String = "",
 
-        @SerializedName("subtitle")
-        @Expose
-        var subtitle: String = "",
-
         @SerializedName("authors")
         @Expose
         var authors: List<String> = ArrayList(),
-
-        @SerializedName("publisher")
-        @Expose
-        var publisher: String = "",
-
-        @SerializedName("publishedDate")
-        @Expose
-        var publishedDate: String = "",
 
         @SerializedName("description")
         @Expose
@@ -33,22 +21,7 @@ data class VolumeInfo(
         @Expose
         var pageCount: Int = 0,
 
-        @SerializedName("categories")
+        @SerializedName("imageLinks")
         @Expose
-        var categories: List<String> = ArrayList(),
-
-        @SerializedName("averageRating")
-        @Expose
-        var averageRating: Double = 0.0,
-
-        @SerializedName("language")
-        @Expose
-        var language: String = "",
-
-        @SerializedName("previewLink")
-        @Expose
-        var previewLink: String = "",
-
-        @SerializedName("infoLink")
-        @Expose
-        var infoLink: String = "")
+        var imageLinks: ImageLinks = ImageLinks()
+)

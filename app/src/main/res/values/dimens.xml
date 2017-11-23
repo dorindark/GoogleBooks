@@ -2,6 +2,13 @@
 <resources>
     <dimen name="search_view_padding">8dp</dimen>
     <dimen name="book_item_padding">8dp</dimen>
+    <dimen name="search_label_padding">8dp</dimen>
     <dimen name="book_title_text_size">14sp</dimen>
     <dimen name="book_authors_text_size">12sp</dimen>
+    <dimen name="book_description_text_size">12sp</dimen>
+    <dimen name="search_label_text_size">18sp</dimen>
+
+    <dimen name="book_detail_generic_padding">8dp</dimen>
+    <dimen name="book_detail_image_height">240dp</dimen>
+
 </resources>

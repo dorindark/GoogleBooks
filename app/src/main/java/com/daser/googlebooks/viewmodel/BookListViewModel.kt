@@ -5,10 +5,9 @@ import android.arch.lifecycle.ViewModel
 import android.arch.paging.DataSource
 import android.arch.paging.LivePagedListProvider
 import android.arch.paging.PagedList
-
 import com.daser.googlebooks.config.Constants
 import com.daser.googlebooks.data.Book
-import com.daser.googlebooks.datasource.TDataSource
+import com.daser.googlebooks.datasource.BookListRepository
 
 /**
  * Created by Dorin on 11/20/2017.
@@ -16,7 +15,7 @@ import com.daser.googlebooks.datasource.TDataSource
 
 class BookListViewModel : ViewModel() {
     lateinit var bookList: LiveData<PagedList<Book>>
-    lateinit internal var tDataSource: TDataSource
+    lateinit internal var tDataSource: BookListRepository
 
     fun init(searchText: String) {
         setSearchText(searchText)
@@ -29,7 +28,7 @@ class BookListViewModel : ViewModel() {
     private fun createDataSource(searchText: String): LiveData<PagedList<Book>> =
             object : LivePagedListProvider<Int, Book>() {
                 override fun createDataSource(): DataSource<Int, Book> {
-                    tDataSource = TDataSource()
+                    tDataSource = BookListRepository()
                     tDataSource.searchText = searchText
                     return tDataSource
                 }

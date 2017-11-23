@@ -3,7 +3,7 @@ package com.daser.googlebooks.network
 import com.daser.googlebooks.data.Book
 import com.daser.googlebooks.data.BookList
 import io.reactivex.Observable
-import retrofit2.Call
+import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -24,10 +24,10 @@ interface GoogleBooksService {
     fun getBooks(@Query("q") query: String,
                  @Query("startIndex") startIndex: Int,
                  @Query("maxResults") maxResults: Int,
-                 @Query("fields") fields: String): Call<BookList>
+                 @Query("fields") fields: String): Observable<BookList>
 
     @GET("volumes/{volumeId}")
-    fun getBookDetailById(@Path("volumeId") volumeId: String): Observable<Book>
+    fun getBookDetailById(@Path("volumeId") volumeId: String): Single<Book>
 
     companion object {
         fun create(): GoogleBooksService {

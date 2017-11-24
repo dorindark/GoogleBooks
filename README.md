@@ -10,3 +10,4 @@ Used Paging Library with a TiledDataSource to provide pagination functionality f
 Possible future improvements:
 - For now the models are in memory and separate for the book list and the book details. They are persistent when the device is rotated since the ViewModels survive activity recreation. A database (like Room) could be used for caching network call results and models between app runs and as the single source of truth. The complexity and thus the implementatin time would increase more than what's needed for a sample app. 
 - UI was not a major focus, and only a limited set of fields are shown for book details. The other fields are just more of the same.
+- Expand test cases for UI, ViewModel, etc using Dagger 2 for DI

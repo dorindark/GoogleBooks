@@ -14,6 +14,8 @@ import com.daser.googlebooks.datasource.BookListRepository
 import com.daser.googlebooks.network.GoogleBooksServiceInstance
 import com.daser.googlebooks.ui.adapters.BookListAdapter
 import com.daser.googlebooks.viewmodel.BookListViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 
 class BookListActivity : AppCompatActivity() {
@@ -28,7 +30,8 @@ class BookListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProviders.of(this).get(BookListViewModel::class.java)
-        viewModel.init(BookListRepository(GoogleBooksServiceInstance), "")
+        val repository = BookListRepository(GoogleBooksServiceInstance, AndroidSchedulers.mainThread(), Schedulers.io())
+        viewModel.init(repository, "")
 
         bookListAdapter = BookListAdapter()
         viewModel.bookList.observe(this, Observer(bookListAdapter::setList))

@@ -16,6 +16,8 @@ import com.daser.googlebooks.datasource.BookDetailRepository
 import com.daser.googlebooks.network.GoogleBooksServiceInstance
 import com.daser.googlebooks.viewmodel.BookDetailViewModel
 import com.squareup.picasso.Picasso
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 class BookDetailActivity : AppCompatActivity() {
 
@@ -38,7 +40,8 @@ class BookDetailActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(BookDetailViewModel::class.java)
 
         intent.getStringExtra(BOOK_DETAIL_KEY)?.let {
-            viewModel.init(BookDetailRepository(GoogleBooksServiceInstance), it)
+            val repository = BookDetailRepository(GoogleBooksServiceInstance, AndroidSchedulers.mainThread(), Schedulers.io())
+            viewModel.init(repository, it)
             // observe
             viewModel.book.observe(this, Observer { updateUI(it ?: Book()) })
         }

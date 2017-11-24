@@ -13,6 +13,7 @@ import com.daser.googlebooks.datasource.BookDetailRepository
 class BookDetailViewModel : ViewModel() {
     lateinit var book: LiveData<Book>
 
+    // TODO
     //  @Inject // UserRepository parameter is provided by Dagger 2 for testing the ViewModel in isolation
     fun init(bookDetailRepository: BookDetailRepository, bookId: String) {
         book = bookDetailRepository.getBookDetail(bookId)

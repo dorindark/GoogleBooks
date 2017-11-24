@@ -15,9 +15,12 @@ import com.daser.googlebooks.datasource.BookListRepository
 
 class BookListViewModel : ViewModel() {
     lateinit var bookList: LiveData<PagedList<Book>>
-    lateinit internal var tDataSource: BookListRepository
+    lateinit internal var dataRepository: BookListRepository
 
-    fun init(searchText: String) {
+    // TODO
+    //  @Inject // BookListRepository parameter should be provided by Dagger 2 for testing the ViewModel in isolation
+    fun init(bookListRepository: BookListRepository, searchText: String) {
+        dataRepository = bookListRepository
         setSearchText(searchText)
     }
 
@@ -28,9 +31,8 @@ class BookListViewModel : ViewModel() {
     private fun createDataSource(searchText: String): LiveData<PagedList<Book>> =
             object : LivePagedListProvider<Int, Book>() {
                 override fun createDataSource(): DataSource<Int, Book> {
-                    tDataSource = BookListRepository()
-                    tDataSource.searchText = searchText
-                    return tDataSource
+                    dataRepository.searchText = searchText
+                    return dataRepository
                 }
             }.create(0, PagedList.Config.Builder()
                     .setEnablePlaceholders(false)

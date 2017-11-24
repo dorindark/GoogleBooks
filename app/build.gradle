@@ -52,11 +52,15 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
 
     // dagger 2 for dependency injection
-    compile 'com.google.dagger:dagger-android:2.13'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
+    // used for testing in isolation for ui, viewmodel, etc
+//    compile 'com.google.dagger:dagger-android:2.13'
+//    annotationProcessor 'com.google.dagger:dagger-android-processor:2.13'
 
     // tests
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    // Mockito
+    testCompile 'org.mockito:mockito-core:2.12.0'
 }

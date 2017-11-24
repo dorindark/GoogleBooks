@@ -5,7 +5,7 @@ import android.arch.paging.TiledDataSource
 import com.daser.googlebooks.config.Constants.SUMMARY_FIELDS
 import com.daser.googlebooks.data.Book
 import com.daser.googlebooks.data.BookList
-import com.daser.googlebooks.network.GoogleBooksServiceInstance
+import com.daser.googlebooks.network.GoogleBooksService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
  * Created by Dorin on 11/20/2017.
  */
 
-class BookListRepository : TiledDataSource<Book>() {
+class BookListRepository (private val booksService: GoogleBooksService) : TiledDataSource<Book>() {
 
     var searchText = ""
 
@@ -24,8 +24,9 @@ class BookListRepository : TiledDataSource<Book>() {
     override fun loadRange(startPosition: Int, count: Int): List<Book> {
         val books = ArrayList<Book>()
 
+        // this is blocking in order to provide results back to loadRange which is sync (by Google design)
         try {
-            books.addAll(GoogleBooksServiceInstance.getBooks(searchText, startPosition, count, SUMMARY_FIELDS)
+            books.addAll(booksService.getBooks(searchText, startPosition, count, SUMMARY_FIELDS)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .map(BookList::items)

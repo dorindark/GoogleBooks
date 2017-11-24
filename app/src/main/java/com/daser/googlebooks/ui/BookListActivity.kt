@@ -1,17 +1,19 @@
 package com.daser.googlebooks.ui
 
 import android.arch.lifecycle.Observer
-import android.os.Bundle
-import com.daser.googlebooks.R
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.EditText
-import com.daser.googlebooks.ui.adapters.BookListAdapter
-import com.daser.googlebooks.viewmodel.BookListViewModel
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.EditText
+import com.daser.googlebooks.R
+import com.daser.googlebooks.datasource.BookListRepository
+import com.daser.googlebooks.network.GoogleBooksServiceInstance
+import com.daser.googlebooks.ui.adapters.BookListAdapter
+import com.daser.googlebooks.viewmodel.BookListViewModel
 
 
 class BookListActivity : AppCompatActivity() {
@@ -26,7 +28,7 @@ class BookListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         viewModel = ViewModelProviders.of(this).get(BookListViewModel::class.java)
-        viewModel.init("")
+        viewModel.init(BookListRepository(GoogleBooksServiceInstance), "")
 
         bookListAdapter = BookListAdapter()
         viewModel.bookList.observe(this, Observer(bookListAdapter::setList))

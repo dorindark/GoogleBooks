@@ -12,6 +12,8 @@ import android.widget.TextView
 import com.daser.googlebooks.R
 import com.daser.googlebooks.config.Constants.BOOK_DETAIL_KEY
 import com.daser.googlebooks.data.Book
+import com.daser.googlebooks.datasource.BookDetailRepository
+import com.daser.googlebooks.network.GoogleBooksServiceInstance
 import com.daser.googlebooks.viewmodel.BookDetailViewModel
 import com.squareup.picasso.Picasso
 
@@ -36,7 +38,7 @@ class BookDetailActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(BookDetailViewModel::class.java)
 
         intent.getStringExtra(BOOK_DETAIL_KEY)?.let {
-            viewModel.init(it)
+            viewModel.init(BookDetailRepository(GoogleBooksServiceInstance), it)
             // observe
             viewModel.book.observe(this, Observer { updateUI(it ?: Book()) })
         }

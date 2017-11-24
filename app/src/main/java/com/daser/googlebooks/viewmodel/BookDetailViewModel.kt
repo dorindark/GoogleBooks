@@ -12,15 +12,9 @@ import com.daser.googlebooks.datasource.BookDetailRepository
 
 class BookDetailViewModel : ViewModel() {
     lateinit var book: LiveData<Book>
-    private var bookDetailRepository: BookDetailRepository = BookDetailRepository()
 
-//    @Inject // UserRepository parameter is provided by Dagger 2
-//    fun BookDetailViewModel(repo: BookDetailRepository) {
-//        this.bookDetailRepository = repo
-//    }
-
-    fun init(bookId: String) {
-
+    //  @Inject // UserRepository parameter is provided by Dagger 2 for testing the ViewModel in isolation
+    fun init(bookDetailRepository: BookDetailRepository, bookId: String) {
         book = bookDetailRepository.getBookDetail(bookId)
     }
 
